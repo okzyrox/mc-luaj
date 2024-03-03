@@ -27,11 +27,14 @@ public class ExampleMod implements ModInitializer {
 	private void executeLuaScript(String fileName) {
         try {
             // Create a Lua interpreter
-            LuaValue globals = JsePlatform.standardGlobals();
-			String script = "luamods/" + fileName;
-            //LuaValue chunk = globals.load(new FileReader(new File(fileName)), "main.lua");
-			//LuaValue chunk = globals.load(new FileInputStream(fileName), "main.lua");
-			LuaValue chunk = globals.loadfile(script);
+			String Path = "luamods/";
+           	InputStream inputStream = getClass().getClassLoader().getResourceAsStream(Path + fileName);
+            if (inputStream == null) {
+                System.err.println("Lua script file not found: " + Path + fileName);
+                return;
+            }
+            Reader reader = new InputStreamReader(inputStream);
+            LuaValue chunk = globals.load(reader, "main.lua");
 
             // Execute the Lua script
             chunk.call();
