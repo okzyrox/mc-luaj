@@ -27,6 +27,7 @@ public class ExampleMod implements ModInitializer {
 	private void executeLuaScript(String fileName) {
         try {
             // Create a Lua interpreter
+			Globals globals = JsePlatform.standardGlobals();
 			String Path = "luamods/";
            	InputStream inputStream = getClass().getClassLoader().getResourceAsStream(Path + fileName);
             if (inputStream == null) {
