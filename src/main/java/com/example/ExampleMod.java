@@ -39,8 +39,8 @@ public class ExampleMod implements ModInitializer {
 
             // Execute the Lua script
             chunk.call();
-        } catch (IOException e) {
-            System.err.println("Failed to read Lua script: " + e.getMessage());
+        } catch (Exception  e) {
+            System.err.println("Error: " + e.getMessage());
         } catch (LuaError e) {
             System.err.println("Lua script execution error: " + e.getMessage());
         }
