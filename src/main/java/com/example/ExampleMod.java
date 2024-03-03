@@ -28,8 +28,10 @@ public class ExampleMod implements ModInitializer {
         try {
             // Create a Lua interpreter
             LuaValue globals = JsePlatform.standardGlobals();
+			String script = "luamods/" + fileName;
             //LuaValue chunk = globals.load(new FileReader(new File(fileName)), "main.lua");
-			LuaValue chunk = globals.load(new FileInputStream(fileName), "main.lua");
+			//LuaValue chunk = globals.load(new FileInputStream(fileName), "main.lua");
+			LuaValue chunk = globals.loadfile(script);
 
             // Execute the Lua script
             chunk.call();
