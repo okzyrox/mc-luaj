@@ -41,8 +41,6 @@ public class ExampleMod implements ModInitializer {
             chunk.call();
         } catch (Exception  e) {
             System.err.println("Error: " + e.getMessage());
-        } catch (LuaError e) {
-            System.err.println("Lua script execution error: " + e.getMessage());
-        }
+        } 
     }
 }
